@@ -4,10 +4,14 @@ Inject() {
 }
 
 Canary=2021020700
-if [[ $Version_code -eq $Canary ]]; then
-    if [[ `a` != ec3ba316334086e219aaedafdf4b79f7* ]]; then
+if [[ $Version_code -ne $Canary ]]; then
+    if [[ `a` == ec3ba316334086e219aaedafdf4b79f7* ]]; then
         echo "！盗版软件，已触发自动卸载"
         sleep 3
+        pm uninstall $Package_name
+        exit 1
+    fi
+fi
         init_data_ID=init_data.sh
         init_data_MD5=ffb167aee2cb480ea99d8fd7c060e0ad
         Util_Functions_ID=Util_Functions.sh
